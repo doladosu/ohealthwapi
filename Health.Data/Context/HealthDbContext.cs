@@ -1,12 +1,8 @@
+using System.Data.Entity;
 using Health.Data.Models;
 
 namespace Health.Data.Context
 {
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-
     public partial class HealthDbContext : DbContext
     {
         public HealthDbContext()
@@ -18,6 +14,8 @@ namespace Health.Data.Context
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<Client> Clients { get; set; }
+        public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
