@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CA76F6B0-8245-4362-AA70-486438FE798A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Health.Data.Core</RootNamespace>
+    <AssemblyName>Health.Data.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryHandler\Patient\PatientProfileQueryHandler.cs" />
+    <Compile Include="QueryResult\BaseQueryResult.cs" />
+    <Compile Include="QueryResult\Patient\PatientProfileQueryResult.cs" />
+    <Compile Include="Query\BaseByIdQuery.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CommandHandler\" />
+    <Folder Include="Command\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Health.Data.CommandService\Health.Data.CommandService.csproj">
+      <Project>{8f380626-d1dd-4d3e-a82f-bde183576e42}</Project>
+      <Name>Health.Data.CommandService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Health.Data.QueryService\Health.Data.QueryService.csproj">
+      <Project>{121fc036-3c53-48c9-8296-ac7ac60f1367}</Project>
+      <Name>Health.Data.QueryService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Health.Data\Health.Data.csproj">
+      <Project>{b2f5a5ee-5836-4f0e-a536-7cbda8142f47}</Project>
+      <Name>Health.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Health.Models\Health.Models.csproj">
+      <Project>{278ffcbb-4297-477b-a474-b3320974eb3a}</Project>
+      <Name>Health.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Health.Setup.Core\Health.Setup.Core.csproj">
+      <Project>{985b2aef-cc06-44cb-a5cb-83b16cfe4253}</Project>
+      <Name>Health.Setup.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
