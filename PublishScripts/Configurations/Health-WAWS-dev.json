@@ -6,7 +6,7 @@
         },
         "databases": [
             {
-                "connectionStringName": "DefaultConnection",
+                "connectionStringName": "HealthDbContext",
                 "databaseName": "ohealth_db",
                 "serverName": "",
                 "user": "darexbala",

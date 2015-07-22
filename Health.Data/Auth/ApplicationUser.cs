@@ -19,7 +19,7 @@ namespace Health.Data.Auth
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("HealthDbContext", throwIfV1Schema: false)
         {
         }
 

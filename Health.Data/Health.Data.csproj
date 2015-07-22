@@ -92,6 +92,8 @@
     <Compile Include="Auth\ApplicationUser.cs" />
     <Compile Include="Auth\ApplicationUserManager.cs" />
     <Compile Include="Auth\AuthRepository.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\ApplicationType.cs" />
     <Compile Include="Models\ApplicationTypes.cs" />
     <Compile Include="Models\AspNetRole.cs" />
     <Compile Include="Models\AspNetUser.cs" />
@@ -99,7 +101,12 @@
     <Compile Include="Models\AspNetUserLogin.cs" />
     <Compile Include="Context\HealthDbContext.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Gender.cs" />
+    <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\Race.cs" />
     <Compile Include="Models\RefreshToken.cs" />
+    <Compile Include="Models\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

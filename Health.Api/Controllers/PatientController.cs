@@ -11,10 +11,18 @@ using Health.Setup.Core;
 
 namespace Health.Controllers
 {
-    [Authorize]
+    /// <summary>
+    /// Patient endpoints
+    /// </summary>
+    //[Authorize]
     [RoutePrefix("api/Patient")]
     public class PatientController : BaseApiController
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="commandDispatcher"></param>
+        /// <param name="queryDispatcher"></param>
         public PatientController(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher) : base(commandDispatcher, queryDispatcher)
         {
         }

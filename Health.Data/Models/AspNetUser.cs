@@ -10,6 +10,7 @@ namespace Health.Data.Models
         {
             AspNetUserClaims = new HashSet<AspNetUserClaim>();
             AspNetUserLogins = new HashSet<AspNetUserLogin>();
+            Patients = new HashSet<Patient>();
             AspNetRoles = new HashSet<AspNetRole>();
         }
 
@@ -40,9 +41,20 @@ namespace Health.Data.Models
         [StringLength(256)]
         public string UserName { get; set; }
 
+        [StringLength(128)]
+        public string FirstName { get; set; }
+
+        [StringLength(128)]
+        public string LastName { get; set; }
+
+        [StringLength(128)]
+        public string Dob { get; set; }
+
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
 
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
+
+        public virtual ICollection<Patient> Patients { get; set; }
 
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
     }

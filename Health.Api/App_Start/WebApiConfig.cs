@@ -2,6 +2,8 @@
 using System.Web.Http.Filters;
 using Health.Setup;
 using Microsoft.Owin.Security.OAuth;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Health
 {
@@ -28,6 +30,9 @@ namespace Health
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
         }
 
         private static void RegisterModelBinders()

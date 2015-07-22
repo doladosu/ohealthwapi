@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Health.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class HomeController : Controller
     {
+        /// <summary>
+        /// Geri Medic Landing page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "Geri Medic Home Page";
 
             return View();
         }
