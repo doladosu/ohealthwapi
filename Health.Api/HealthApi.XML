@@ -535,6 +535,79 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:Health.Controllers.AccountController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Health.Controllers.AccountController.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Health.Controllers.AccountController.#ctor(Health.Data.Auth.ApplicationUserManager,Microsoft.Owin.Security.ISecureDataFormat{Microsoft.Owin.Security.AuthenticationTicket})">
+            <summary>
+            
+            </summary>
+            <param name="userManager"></param>
+            <param name="accessTokenFormat"></param>
+        </member>
+        <member name="M:Health.Controllers.AccountController.GetUserInfo">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Health.Controllers.AccountController.Logout">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Health.Controllers.AccountController.GetManageInfo(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="returnUrl"></param>
+            <param name="generateState"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Health.Controllers.AccountController.ChangePassword(Health.Models.ChangePasswordBindingModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Health.Controllers.AccountController.SetPassword(Health.Models.SetPasswordBindingModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Health.Controllers.AccountController.Register(Health.Models.RegisterBindingModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Health.Controllers.AccountController.UserManager">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Health.Controllers.AccountController.AccessTokenFormat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Health.Controllers.BaseApiController">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:Health.Controllers.BaseApiController.QueryDispatcher">
             <summary>
             IQueryDispatcher for all queries
@@ -578,7 +651,6 @@
             <summary>
             
             </summary>
-             //[Authorize]
         </member>
         <member name="M:Health.Controllers.ListController.#ctor(Health.Setup.Core.ICommandDispatcher,Health.Setup.Core.IQueryDispatcher)">
             <summary>
@@ -608,6 +680,12 @@
         <member name="M:Health.Controllers.PatientController.GetAllPatientProfilesTask(Health.Setup.ILoggedInPerson)">
             <summary>
             Gets all PatientProfiles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Health.Controllers.PatientController.GetPatientProfileTask(Health.Setup.ILoggedInPerson,System.Int32)">
+            <summary>
+            Gets PatientProfile by Id
             </summary>
             <returns></returns>
         </member>

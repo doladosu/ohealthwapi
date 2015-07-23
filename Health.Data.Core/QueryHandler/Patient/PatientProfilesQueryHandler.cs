@@ -6,21 +6,21 @@ using Health.Setup.Core;
 
 namespace Health.Data.Core.QueryHandler.Patient
 {
-    public class PatientProfileQueryHandler : IQueryHandler<BaseByIdQuery, PatientProfileQueryResult>
+    public class PatientProfilesQueryHandler : IQueryHandler<BaseByIdQuery, PatientProfilesQueryResult>
     {
         private readonly IPatientRepository _patientRepository;
 
-        public PatientProfileQueryHandler(IPatientRepository patientRepository)
+        public PatientProfilesQueryHandler(IPatientRepository patientRepository)
         {
             _patientRepository = patientRepository;
         }
 
-        public async Task<PatientProfileQueryResult> Retrieve(BaseByIdQuery query)
+        public async Task<PatientProfilesQueryResult> Retrieve(BaseByIdQuery query)
         {
-            var data = await _patientRepository.GetPatientProfileTask(query.Id);
-            var result = new PatientProfileQueryResult
+            var allData = await _patientRepository.GetAllPatientProfilesTask();
+            var result = new PatientProfilesQueryResult
             {
-                PatientProfile = data
+                PatientProfiles = allData,
             };
             return result;
         }

@@ -13,5 +13,11 @@ namespace Health.Data.QueryService.Repository.Impl
             var allPatients = await Db.Patients.ToListAsync();
             return Mapper.Map<IEnumerable<PatientProfile>>(allPatients);
         }
+
+        public async Task<PatientProfile> GetPatientProfileTask(int id)
+        {
+            var patient = await Db.Patients.FindAsync(id);
+            return Mapper.Map<PatientProfile>(patient);
+        }
     }
 }

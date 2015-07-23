@@ -10,5 +10,6 @@ namespace Health.Models.Output
         public int Gender { get; set; }
         public DateTime Dob { get; set; }
         public int Race { get; set; }
+        public int Id { get; set; }
     }
 }

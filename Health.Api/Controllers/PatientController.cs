@@ -40,12 +40,29 @@ namespace Health.Controllers
             return await TryAsync(async () =>
             {
                 var baseByIdQuery = new BaseByIdQuery();
-                var result = await QueryDispatcher.Dispatch<BaseByIdQuery, PatientProfileQueryResult>(baseByIdQuery);
+                var result = await QueryDispatcher.Dispatch<BaseByIdQuery, PatientProfilesQueryResult>(baseByIdQuery);
                 return new CustomOkResult<IEnumerable<PatientProfile>>(result.PatientProfiles, this)
                 {
                     XInlineCount = result.TotalRecords.ToString()
                 };
             }, memberParameters: new object[] { loggedInPerson });
+        }
+
+        /// <summary>
+        /// Gets PatientProfile by Id
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{id:int}")]
+        [ResponseType(typeof(PatientProfile))]
+        public async Task<IHttpActionResult> GetPatientProfileTask(ILoggedInPerson loggedInPerson, int id)
+        {
+            return await TryAsync(async () =>
+            {
+                var baseByIdQuery = new BaseByIdQuery {Id = id};
+                var result = await QueryDispatcher.Dispatch<BaseByIdQuery, PatientProfileQueryResult>(baseByIdQuery);
+                return Ok(result.PatientProfile);
+            }, memberParameters: new object[] { loggedInPerson, id });
         }
     }
 }
