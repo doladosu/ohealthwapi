@@ -7,6 +7,9 @@ using Microsoft.Owin.Security.Infrastructure;
 
 namespace Health.Providers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class RefreshTokenProvider : IAuthenticationTokenProvider
     {
         /// <summary>
@@ -22,60 +25,39 @@ namespace Health.Providers
         public async Task CreateAsync(AuthenticationTokenCreateContext context)
         {
             var clientid = context.Ticket.Properties.Dictionary["as:client_id"];
-            var headerRefreshToken = context.Request.Headers["x-refreshToken"];
-            var deviceid = context.Request.Headers["x-deviceId"];
-
-            IncomingToken = headerRefreshToken;
 
             if (string.IsNullOrEmpty(clientid))
             {
                 return;
             }
 
+            var refreshTokenId = Guid.NewGuid().ToString("n");
+
             using (var repo = new AuthRepository())
             {
-                var tokenToLookup = new RefreshToken
+                var refreshTokenLifeTime = context.OwinContext.Get<string>("as:clientRefreshTokenLifeTime");
+
+                var token = new RefreshToken()
                 {
+                    Id = Helper.GetHash(refreshTokenId),
                     ClientId = clientid,
                     Subject = context.Ticket.Identity.Name,
-                    DeviceId = deviceid,
+                    IssuedUtc = DateTime.UtcNow,
+                    ExpiresUtc = DateTime.UtcNow.AddMinutes(Convert.ToDouble(refreshTokenLifeTime))
                 };
-                var refreshToken = await repo.GenerateRefreshToken(tokenToLookup);
-                if (refreshToken == null || string.IsNullOrWhiteSpace(IncomingToken))
+
+                context.Ticket.Properties.IssuedUtc = token.IssuedUtc;
+                context.Ticket.Properties.ExpiresUtc = token.ExpiresUtc;
+
+                token.ProtectedTicket = context.SerializeTicket();
+
+                var result = await repo.AddRefreshToken(token);
+
+                if (result)
                 {
-                    var refreshTokenLifeTime = context.OwinContext.Get<string>("as:clientRefreshTokenLifeTime");
-                    var refreshTokenId = Guid.NewGuid().ToString("n");
-
-                    var token = new RefreshToken
-                    {
-                        Id = Helper.GetHash(refreshTokenId),
-                        ClientId = clientid,
-                        Subject = context.Ticket.Identity.Name,
-                        IssuedUtc = DateTime.UtcNow,
-                        ExpiresUtc = DateTime.UtcNow.AddMinutes(Convert.ToDouble(refreshTokenLifeTime)),
-                        DeviceId = deviceid,
-                    };
-
-                    context.Ticket.Properties.IssuedUtc = token.IssuedUtc;
-                    context.Ticket.Properties.ExpiresUtc = token.ExpiresUtc;
-
-                    token.ProtectedTicket = context.SerializeTicket();
-
-                    var result = await repo.AddRefreshToken(token);
-
-                    if (result)
-                    {
-                        context.SetToken(refreshTokenId);
-                    }
+                    context.SetToken(refreshTokenId);
                 }
-                else
-                {
-                    context.Ticket.Properties.IssuedUtc = refreshToken.IssuedUtc;
-                    context.Ticket.Properties.ExpiresUtc = refreshToken.ExpiresUtc;
 
-                    refreshToken.ProtectedTicket = context.SerializeTicket();
-                    context.SetToken(IncomingToken);
-                }
             }
         }
 
@@ -86,10 +68,11 @@ namespace Health.Providers
         /// <returns></returns>
         public async Task ReceiveAsync(AuthenticationTokenReceiveContext context)
         {
+
             var allowedOrigin = context.OwinContext.Get<string>("as:clientAllowedOrigin");
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
-            IncomingToken = context.Token;
-            var hashedTokenId = Helper.GetHash(context.Token);
+
+            string hashedTokenId = Helper.GetHash(context.Token);
 
             using (var repo = new AuthRepository())
             {
@@ -99,9 +82,6 @@ namespace Health.Providers
                 {
                     //Get protectedTicket from refreshToken class
                     context.DeserializeTicket(refreshToken.ProtectedTicket);
-                }
-                if (refreshToken != null && string.IsNullOrWhiteSpace(IncomingToken))
-                {
                     await repo.RemoveRefreshToken(hashedTokenId);
                 }
             }

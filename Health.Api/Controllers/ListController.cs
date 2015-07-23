@@ -14,7 +14,7 @@ namespace Health.Controllers
     /// <summary>
     /// 
     /// </summary>
-    ///  //[Authorize]
+    [Authorize]
     [RoutePrefix("api/List")]
     public class ListController : BaseApiController
     {

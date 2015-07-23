@@ -7,7 +7,7 @@
             appTitle = 'Customer Management';
 
         vm.isCollapsed = false;
-        vm.appTitle = (config.useBreeze) ? appTitle + ' Breeze' : appTitle;
+        vm.appTitle = appTitle;
 
         vm.highlight = function (path) {
             return $location.path().substr(0, path.length) === path;

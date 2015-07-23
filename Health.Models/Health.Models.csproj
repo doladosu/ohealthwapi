@@ -39,6 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enum\ApplicationTypes.cs" />
+    <Compile Include="Enum\Gender.cs" />
+    <Compile Include="Enum\Race.cs" />
     <Compile Include="Output\PatientProfile.cs" />
     <Compile Include="Output\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

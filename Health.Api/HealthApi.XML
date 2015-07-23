@@ -36,6 +36,28 @@
             </summary>
             <param name="kernel">The kernel.</param>
         </member>
+        <member name="T:Health.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Health.Startup.ConfigureAuth(Owin.IAppBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="M:Health.Startup.Configuration(Owin.IAppBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="P:Health.Startup.OAuthBearerOptions">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Health.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
             Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
@@ -599,6 +621,16 @@
             Geri Medic Account page
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Health.Providers.ApplicationOAuthProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Health.Providers.RefreshTokenProvider">
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:Health.Providers.RefreshTokenProvider.CreateAsync(Microsoft.Owin.Security.Infrastructure.AuthenticationTokenCreateContext)">
             <summary>

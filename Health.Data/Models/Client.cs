@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Health.Models.Enum;
 
 namespace Health.Data.Models
 {

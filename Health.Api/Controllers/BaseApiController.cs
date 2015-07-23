@@ -9,6 +9,9 @@ using Health.Setup.Core;
 
 namespace Health.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class BaseApiController : ApiController
     {
         /// <summary>

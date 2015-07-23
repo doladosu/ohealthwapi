@@ -13,7 +13,10 @@ namespace Health
         /// </summary>
         public static void Setup()
         {
-            Mapper.CreateMap<Patient, Models.Output.PatientProfile>();
+            Mapper.CreateMap<Patient, Models.Output.PatientProfile>()
+                .ForMember(dest => dest.ProxyId, opt => opt.MapFrom(src => src.UserId))
+                .ForMember(dest => dest.Gender, opt => opt.MapFrom(src => src.GenderId))
+                .ForMember(dest => dest.Race, opt => opt.MapFrom(src => src.RaceId));
             Mapper.CreateMap<State, Models.Output.State>();
         }
     }

@@ -14,8 +14,8 @@ namespace Health.Controllers
     /// <summary>
     /// Patient endpoints
     /// </summary>
-    //[Authorize]
-    [RoutePrefix("api/Patient")]
+    [Authorize]
+    [RoutePrefix("api/Patients")]
     public class PatientController : BaseApiController
     {
         /// <summary>

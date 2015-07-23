@@ -94,7 +94,6 @@
     <Compile Include="Auth\AuthRepository.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\ApplicationType.cs" />
-    <Compile Include="Models\ApplicationTypes.cs" />
     <Compile Include="Models\AspNetRole.cs" />
     <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="Models\AspNetUserClaim.cs" />
@@ -109,7 +108,12 @@
     <Compile Include="Models\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Health.Models\Health.Models.csproj">
+      <Project>{278ffcbb-4297-477b-a474-b3320974eb3a}</Project>
+      <Name>Health.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using System.Threading.Tasks;
 using Health.Data.Core.Query;
 using Health.Data.Core.QueryResult.Patient;
-using Health.Data.Models;
 using Health.Data.QueryService.Repository;
 using Health.Setup.Core;
 
@@ -23,7 +20,7 @@ namespace Health.Data.Core.QueryHandler.Patient
             var allData = await _patientRepository.GetAllPatientProfilesTask();
             var result = new PatientProfileQueryResult
             {
-                //PatientProfiles = Mapper.Map<IEnumerable<AspNetUser>>(allData),
+                PatientProfiles = allData,
             };
             return result;
         }
