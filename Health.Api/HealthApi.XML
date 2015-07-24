@@ -58,6 +58,17 @@
             
             </summary>
         </member>
+        <member name="T:Health.WebApiConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Health.WebApiConfig.Register(System.Web.Http.HttpConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="config"></param>
+        </member>
         <member name="M:Health.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
             Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
@@ -700,6 +711,16 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Health.WebApiApplication">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Health.WebApiApplication.Application_Start">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Health.Providers.ApplicationOAuthProvider">
             <summary>
             
@@ -812,6 +833,11 @@
             <param name="roles"></param>
             <param name="actorId"></param>
             <param name="securityUserId"></param>
+        </member>
+        <member name="T:Health.Setup.MessageHandler">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Health.Setup.PersonActionParameterAttribute">
             <summary>

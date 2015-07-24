@@ -1,5 +1,6 @@
 ﻿using System.Web.Http;
 using Health;
+using Health.Setup;
 using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Owin;
@@ -23,6 +24,7 @@ namespace Health
             ConfigureAuth(app);
             app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
+            config.MessageHandlers.Add(new MessageHandler());
         }
     }
 }

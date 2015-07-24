@@ -6,8 +6,14 @@ using System.Web.Routing;
 
 namespace Health
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class WebApiApplication : HttpApplication
     {
+        /// <summary>
+        /// 
+        /// </summary>
         protected void Application_Start()
         {
             AutoMapperConfiguration.Setup();
