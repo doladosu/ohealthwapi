@@ -7,7 +7,7 @@ namespace Health.Data.QueryService.Repository
 {
     public interface IPatientRepository : IRepository
     {
-        Task<IEnumerable<PatientProfile>> GetAllPatientProfilesTask();
+        Task<IEnumerable<Patient>> GetAllPatientsTask(string userId);
         Task<PatientProfile> GetPatientProfileTask(int id);
     }
 }

@@ -19,15 +19,5 @@ namespace Health.Setup
         /// 
         /// </summary>
         List<string> Roles { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        int ActorId { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        int SecurityUserId { get; }
     }
 }

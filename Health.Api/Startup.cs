@@ -20,11 +20,11 @@ namespace Health
         /// <param name="app"></param>
         public void Configuration(IAppBuilder app)
         {
+            app.UseCors(CorsOptions.AllowAll);
             var config = new HttpConfiguration();
             ConfigureAuth(app);
-            app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
-            config.MessageHandlers.Add(new MessageHandler());
+            //config.MessageHandlers.Add(new MessageHandler());
         }
     }
 }

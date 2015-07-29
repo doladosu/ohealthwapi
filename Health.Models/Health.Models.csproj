@@ -42,6 +42,10 @@
     <Compile Include="Enum\ApplicationTypes.cs" />
     <Compile Include="Enum\Gender.cs" />
     <Compile Include="Enum\Race.cs" />
+    <Compile Include="Output\Address.cs" />
+    <Compile Include="Output\Appointment.cs" />
+    <Compile Include="Output\Insurance.cs" />
+    <Compile Include="Output\Patient.cs" />
     <Compile Include="Output\PatientProfile.cs" />
     <Compile Include="Output\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

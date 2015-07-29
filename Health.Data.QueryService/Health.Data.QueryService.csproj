@@ -57,7 +57,9 @@
     <Compile Include="Repository\IListQueryRepository.cs" />
     <Compile Include="Repository\Impl\BaseQueryRepository.cs" />
     <Compile Include="Repository\Impl\ListQueryRepository.cs" />
+    <Compile Include="Repository\Impl\AppointmentRepository.cs" />
     <Compile Include="Repository\Impl\PatientRepository.cs" />
+    <Compile Include="Repository\IAppointmentRepository.cs" />
     <Compile Include="Repository\IPatientRepository.cs" />
   </ItemGroup>
   <ItemGroup>

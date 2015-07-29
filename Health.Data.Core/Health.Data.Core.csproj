@@ -36,6 +36,9 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.5.6.2.0\lib\Net45\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,20 +48,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandler\Appointment\UpdatePatientAppointmentCommandHandler.cs" />
+    <Compile Include="CommandHandler\Appointment\CreatePatientAppointmentCommandHandler.cs" />
+    <Compile Include="CommandHandler\Patient\CreatePatientProfileCommandHandler.cs" />
+    <Compile Include="Command\Appointment\DeletePatientAppointmentCommand.cs" />
+    <Compile Include="Command\Appointment\UpdatePatientAppointmentCommand.cs" />
+    <Compile Include="Command\Appointment\CreatePatientAppointmentCommand.cs" />
+    <Compile Include="Command\Patient\CreatePatientProfileCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryHandler\Appointment\AppointmentQueryHandler.cs" />
+    <Compile Include="QueryHandler\Appointment\AppointmentsQueryHandler.cs" />
     <Compile Include="QueryHandler\List\StateQueryHandler.cs" />
     <Compile Include="QueryHandler\Patient\PatientProfilesQueryHandler.cs" />
     <Compile Include="QueryHandler\Patient\PatientProfileQueryHandler.cs" />
+    <Compile Include="QueryResult\Appointment\AppointmentQueryResult.cs" />
+    <Compile Include="QueryResult\Appointment\AppointmentsQueryResult.cs" />
     <Compile Include="QueryResult\BaseQueryResult.cs" />
     <Compile Include="QueryResult\List\StateQueryResult.cs" />
     <Compile Include="QueryResult\Patient\PatientProfilesQueryResult.cs" />
     <Compile Include="QueryResult\Patient\PatientProfileQueryResult.cs" />
     <Compile Include="Query\BaseByIdQuery.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CommandHandler\" />
-    <Folder Include="Command\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Health.Data.CommandService\Health.Data.CommandService.csproj">
       <Project>{8f380626-d1dd-4d3e-a82f-bde183576e42}</Project>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using Health.Data.Auth;
 
 namespace Health.Setup
 {
@@ -28,14 +30,14 @@ namespace Health.Setup
             LoggedInPerson loggedInPerson = null;
             if (!string.IsNullOrWhiteSpace(user.Identity.Name))
             {
-                //using (var repo = new AuthRepository())
-                //{
-                //    var loggedInUser = await repo.FindByUserName(user.Identity.Name);
-                //    if (loggedInUser != null)
-                //    {
-                //        loggedInPerson = new LoggedInPerson(loggedInUser.Id, loggedInUser.UserName, new List<string>(), (int)loggedInUser.ActorId, loggedInUser.SecurityUserId, loggedInUser.IsEnabled);
-                //    }
-                //}
+                using (var repo = new AuthRepository())
+                {
+                    var loggedInUser = await repo.FindByUserName(user.Identity.Name);
+                    if (loggedInUser != null)
+                    {
+                        loggedInPerson = new LoggedInPerson(loggedInUser.Id, loggedInUser.UserName, new List<string>());
+                    }
+                }
             }
 
             var currentUser = loggedInPerson;

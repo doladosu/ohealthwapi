@@ -4,13 +4,13 @@ using Health.Data.Core.QueryResult.Patient;
 using Health.Data.QueryService.Repository;
 using Health.Setup.Core;
 
-namespace Health.Data.Core.QueryHandler.Patient
+namespace Health.Data.Core.QueryHandler.Appointment
 {
-    public class PatientProfilesQueryHandler : IQueryHandler<BaseByIdQuery, PatientProfilesQueryResult>
+    public class AppointmentsQueryHandler : IQueryHandler<BaseByIdQuery, PatientProfilesQueryResult>
     {
         private readonly IPatientRepository _patientRepository;
 
-        public PatientProfilesQueryHandler(IPatientRepository patientRepository)
+        public AppointmentsQueryHandler(IPatientRepository patientRepository)
         {
             _patientRepository = patientRepository;
         }

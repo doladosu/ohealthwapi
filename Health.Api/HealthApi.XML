@@ -614,6 +614,11 @@
             
             </summary>
         </member>
+        <member name="T:Health.Controllers.AppointmentController">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Health.Controllers.BaseApiController">
             <summary>
             
@@ -645,6 +650,44 @@
             <param name="sourceFilePath"></param>
             <param name="sourceLineNumber"></param>
             <param name="memberParameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Health.Controllers.AppointmentController.#ctor(Health.Setup.Core.ICommandDispatcher,Health.Setup.Core.IQueryDispatcher)">
+            <summary>
+            
+            </summary>
+            <param name="commandDispatcher"></param>
+            <param name="queryDispatcher"></param>
+        </member>
+        <member name="M:Health.Controllers.AppointmentController.GetAllPatientAppointmentsTask(Health.Setup.ILoggedInPerson,System.Int32)">
+            <summary>
+            Return all appointments for patient
+            </summary>
+            <param name="loggedInPerson"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Health.Controllers.AppointmentController.GetPatientAppointmentTask(Health.Setup.ILoggedInPerson,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="loggedInPerson"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Health.Controllers.AppointmentController.CreatePatientAppointmentTask(Health.Setup.ILoggedInPerson,Health.Models.Output.Appointment)">
+            <summary>
+            Create new patient profile
+            </summary>
+            <param name="loggedInPerson"></param>
+            <param name="appointment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Health.Controllers.AppointmentController.UpdatePatientAppointmentTask(Health.Setup.ILoggedInPerson,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="loggedInPerson"></param>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="T:Health.Controllers.HomeController">
@@ -698,6 +741,14 @@
             <summary>
             Gets PatientProfile by Id
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Health.Controllers.PatientController.CreatePatientProfileTask(Health.Setup.ILoggedInPerson,Health.Models.Output.PatientProfile)">
+            <summary>
+            Create new patient profile
+            </summary>
+            <param name="loggedInPerson"></param>
+            <param name="patientProfile"></param>
             <returns></returns>
         </member>
         <member name="T:Health.Controllers.PortalController">
@@ -809,30 +860,18 @@
             
             </summary>
         </member>
-        <member name="P:Health.Setup.ILoggedInPerson.ActorId">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Health.Setup.ILoggedInPerson.SecurityUserId">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:Health.Setup.LoggedInPerson">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Health.Setup.LoggedInPerson.#ctor(System.String,System.String,System.Collections.Generic.List{System.String},System.Int32,System.Int32,System.Nullable{System.Boolean})">
+        <member name="M:Health.Setup.LoggedInPerson.#ctor(System.String,System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Logged in person information
             </summary>
             <param name="id"></param>
             <param name="userName"></param>
             <param name="roles"></param>
-            <param name="actorId"></param>
-            <param name="securityUserId"></param>
         </member>
         <member name="T:Health.Setup.MessageHandler">
             <summary>
