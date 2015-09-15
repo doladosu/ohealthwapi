@@ -35,6 +35,7 @@ namespace Health.Controllers
         /// Return all appointments for patient
         /// </summary>
         /// <param name="loggedInPerson"></param>
+        /// <param name="patientId"></param>
         /// <returns></returns>
         [HttpGet]
         [Route("{patientId:int}")]
@@ -44,9 +45,9 @@ namespace Health.Controllers
         {
             return await TryAsync(async () =>
             {
-                var baseByIdQuery = new BaseByIdQuery();
-                var result = await QueryDispatcher.Dispatch<BaseByIdQuery, PatientProfilesQueryResult>(baseByIdQuery);
-                return new CustomOkResult<IEnumerable<Patient>>(result.Patients, this)
+                var baseByIdQuery = new BaseByIdQuery{Id = patientId};
+                var result = await QueryDispatcher.Dispatch<BaseByIdQuery, AppointmentsQueryResult>(baseByIdQuery);
+                return new CustomOkResult<IEnumerable<Appointment>>(result.Appointments, this)
                 {
                     XInlineCount = result.TotalRecords.ToString()
                 };

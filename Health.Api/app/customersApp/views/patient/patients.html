@@ -47,7 +47,7 @@
                         <div class="cardBody">
                             <div class="clearfix">
                                 <div class="pull-left cardBodyLeft">
-                                    <a href="#/patientedit/{{patient.id}}" class="white"><img data-ng-src="Content/images/{{patient.gender | lowercase}}.png" class="cardImage" /></a>
+                                    <a href="#/patientedit/{{patient.id}}" class="white"><img data-ng-src="/Content/images/{{patient.gender | lowercase}}.png" class="cardImage" /></a>
                                 </div>
                                 <div class="pull-left cardBodyRight">
                                     <div class="cardBodyContent">{{patient.city}}, {{patient.state.name}}</div>
@@ -80,7 +80,7 @@
                             </thead>
                             <tbody>
                                 <tr data-ng-repeat="patient in vm.filteredPatients | orderBy:vm.orderby:vm.reverse" class="repeat-animation">
-                                    <td><a href="#/patientedit/{{patient.id}}"><img data-ng-src="Content/images/{{patient.gender | lowercase}}.png" class="cardImage" alt="Customer Image" /></a></td>
+                                    <td><a href="#/patientedit/{{patient.id}}"><img data-ng-src="/Content/images/{{patient.gender | lowercase}}.png" class="cardImage" alt="Customer Image" /></a></td>
                                     <td><a href="#/patientedit/{{patient.id}}">{{patient.firstName + ' ' + patient.lastName}}</a></td>
                                     <td>{{patient.city}}, {{patient.state.name}}</td>
                                     <td>

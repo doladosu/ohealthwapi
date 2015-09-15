@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Geri Medic - Geriatic On demand Medical</title>
+    <title>GeriMedic - Geriatic On demand Medical</title>
     <link href='../../css/style.css' rel='stylesheet' type='text/css' />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="../../Scripts/jquery-2.1.4.min.js"></script>
@@ -13,6 +13,10 @@
 				event.preventDefault();
 				$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
 			});
+			$("#form").submit(function (event) {
+			    alert("Handler for .submit() called.");
+			    event.preventDefault();
+			});
 		});
     </script>
 </head>
@@ -22,7 +26,7 @@
     <div class="header">
         <div class="wrap">
             <div class="logo">
-                <a href="/">Geri Medic</a>
+                <a href="/">GeriMedic</a>
             </div>
             @*<div class="top-nav">
                 <ul>
@@ -40,13 +44,13 @@
     <!---start-image-banner---->
     <div class="img-banner" id="home">
         <div class="img-banner-info">
-            <h1><span>Geri</span> Medic</h1>
             <h2>Geriatric On Demand Medical Care</h2>
             <div class="mid-grids-bottom" id="contact">
                 <h2>Sign up to be Notified when it's Done!</h2>
 
-                <form>
-                    <input type="text" class="textbox" value="Your email plase?" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your email plase?';}"><input type="submit" value="Send"/>
+                <form id="form">
+                    <input type="text" class="textbox" value="Your email please?" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your email plase?';}">
+                    <input type="submit" value="Send"/>
                 </form>
             </div>
                 @*<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Sed ut  laudantium, totam rem aperiam.</p>

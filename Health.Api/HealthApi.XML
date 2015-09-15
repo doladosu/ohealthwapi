@@ -664,6 +664,7 @@
             Return all appointments for patient
             </summary>
             <param name="loggedInPerson"></param>
+            <param name="patientId"></param>
             <returns></returns>
         </member>
         <member name="M:Health.Controllers.AppointmentController.GetPatientAppointmentTask(Health.Setup.ILoggedInPerson,System.Int32)">

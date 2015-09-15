@@ -358,13 +358,13 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.icon-large.min.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\1.png" />
+    <Content Include="Content\images\2.png" />
     <Content Include="Content\images\angularShield.png" />
     <Content Include="Content\images\appFolders.png" />
     <Content Include="Content\images\ColorPalette.png" />
     <Content Include="Content\images\CourseLogoYellow.png" />
     <Content Include="Content\images\customerApp.png" />
-    <Content Include="Content\images\female.png" />
-    <Content Include="Content\images\male.png" />
     <Content Include="Content\images\people.png" />
     <Content Include="Content\images\report.png" />
     <Content Include="Content\images\spinner.gif" />

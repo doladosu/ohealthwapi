@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Health.Data.Core", "Health.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Health.Models", "Health.Models\Health.Models.csproj", "{278FFCBB-4297-477B-A474-B3320974EB3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Health.Email", "Health.Email\Health.Email.csproj", "{D54EF339-2221-42BF-9724-4F39CB8FDFE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{278FFCBB-4297-477B-A474-B3320974EB3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{278FFCBB-4297-477B-A474-B3320974EB3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{278FFCBB-4297-477B-A474-B3320974EB3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D54EF339-2221-42BF-9724-4F39CB8FDFE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D54EF339-2221-42BF-9724-4F39CB8FDFE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D54EF339-2221-42BF-9724-4F39CB8FDFE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D54EF339-2221-42BF-9724-4F39CB8FDFE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

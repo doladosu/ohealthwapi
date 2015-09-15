@@ -31,7 +31,7 @@ namespace Health
             app.UseExternalSignInCookie(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ExternalCookie);
             OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
 
-            OAuthAuthorizationServerOptions oAuthServerOptions = new OAuthAuthorizationServerOptions()
+            var oAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
 
                 AllowInsecureHttp = true,
@@ -40,6 +40,36 @@ namespace Health
                 Provider = new ApplicationOAuthProvider(),
                 RefreshTokenProvider = new RefreshTokenProvider()
             };
+
+            app.Use(async (context, next) =>
+            {
+                var req = context.Request;
+                var res = context.Response;
+                // for auth2 token requests
+                if (req.Path.StartsWithSegments(new PathString("/api/login")))
+                {
+                    // if there is an origin header
+                    var origin = req.Headers.Get("Origin");
+                    if (!string.IsNullOrEmpty(origin))
+                    {
+                        // allow the cross-site request
+                        res.Headers.Set("Access-Control-Allow-Origin", origin);
+                    }
+
+                    // if this is pre-flight request
+                    if (req.Method == "OPTIONS")
+                    {
+                        // respond immediately with allowed request methods and headers
+                        res.StatusCode = 200;
+                        res.Headers.AppendCommaSeparatedValues("Access-Control-Allow-Methods", "GET", "POST");
+                        res.Headers.AppendCommaSeparatedValues("Access-Control-Allow-Headers", "authorization", "content-type");
+                        // no further processing
+                        return;
+                    }
+                }
+                // continue executing pipeline
+                await next();
+            });
 
             // Token Generation
             app.UseOAuthAuthorizationServer(oAuthServerOptions);

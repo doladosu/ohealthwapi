@@ -1,7 +1,7 @@
 ﻿(function () {
 
     var app = angular.module('customersApp',
-        ['ngRoute', 'ngAnimate', 'wc.directives', 'ui.bootstrap', 'breeze.angular']);
+        ['ngRoute', 'ngAnimate', 'wc.directives', 'ui.bootstrap', 'LocalStorageModule']);
 
   app.config([
     '$routeProvider', function($routeProvider) {
@@ -11,13 +11,14 @@
         .when('/patients', {
           controller: 'PatientsController',
           templateUrl: viewBase + 'patient/patients.html',
-          controllerAs: 'vm'
+          controllerAs: 'vm',
+          secure: true
         })
         .when('/patientedit/:patientId', {
           controller: 'PatientEditController',
           templateUrl: viewBase + 'patient/patientEdit.html',
           controllerAs: 'vm',
-         // secure: true
+          secure: true
         })
         .when('/customers', {
           controller: 'CustomersController',
@@ -57,7 +58,7 @@
 
     app.run(['$rootScope', '$location', 'authService',
         function ($rootScope, $location, authService) {
-            
+            authService.fillAuthData();
             //Client-side security. Server-side framework MUST add it's 
             //own security as well since client-based security is easily hacked
             $rootScope.$on("$routeChangeStart", function (event, next, current) {

@@ -3,7 +3,7 @@
 
     /**
      * @ngdoc service
-     * @name evoqWebApp.service:authInterceptor
+     * @name customersApp.service:authInterceptor
      *
      * @description
      * Intercept http traffic and insert auth data in headers automatically.
@@ -16,7 +16,7 @@
         /**
          * @ngdoc method
          * @name request
-         * @methodOf evoqWebApp.service:authInterceptor
+         * @methodOf customersApp.service:authInterceptor
          *
          *
          * @description
@@ -47,7 +47,7 @@
         /**
          * @ngdoc method
          * @name response
-         * @methodOf evoqWebApp.service:authInterceptor
+         * @methodOf customersApp.service:authInterceptor
          *
          * @description
          * Check response for token changes and update on-the-fly.
@@ -70,7 +70,7 @@
     };
 
     authInterceptorFactory.$inject = injectParams;
-    var module = angular.module('evoqWebApp');
+    var module = angular.module('customersApp');
     module.factory('authInterceptor', authInterceptorFactory);
     module.config(['$httpProvider', function($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');

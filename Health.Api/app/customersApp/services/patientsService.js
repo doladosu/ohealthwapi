@@ -52,7 +52,7 @@
         }
 
         factory.getPatients = function (pageIndex, pageSize) {
-          return getPagedResource('Patient', pageIndex, pageSize);
+          return getPagedResource('Patients', pageIndex, pageSize);
         };
 
         factory.getStates = function () {

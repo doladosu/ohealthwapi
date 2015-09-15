@@ -54,7 +54,7 @@
     // So, bypass the man in the middle and just redirect here.
     factory.redirectToLogin = function () {
       // Remove all previous prepends to prevent things like: /login/login/login/login/templates
-      var path = '/login/' + $location.$$path.replace(/\/login/gi, '');
+      var path = '/login' + $location.$$path.replace(/\/login/gi, '');
       path = path.replace(/\/{2,}/g, ''); // Collapse slashes
       $location.replace();
       $location.path(path);
@@ -114,7 +114,7 @@
 
   authFactory.$inject = injectParams;
 
-  angular.module('evoqWebApp').factory('authService', authFactory);
+  angular.module('customersApp').factory('authService', authFactory);
 
 }());
 

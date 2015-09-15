@@ -1,9 +1,8 @@
 ﻿(function () {
 
     var value = {
-      serviceBase: 'http://testweb.evoqapps.com/wapi/',
-      reportingServicesUrl: 'http://54.175.38.46/Reports/',
-      clientId: 'evoqWeb'
+      serviceBase: 'http://localhost:14543/api/',
+      clientId: 'HealthWeb'
     };
 
     angular.module('customersApp').value('config', value);
