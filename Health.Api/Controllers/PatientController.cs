@@ -56,14 +56,14 @@ namespace Health.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("{id:int}")]
-        [ResponseType(typeof(PatientProfile))]
+        [ResponseType(typeof(Patient))]
         public async Task<IHttpActionResult> GetPatientProfileTask(ILoggedInPerson loggedInPerson, int id)
         {
             return await TryAsync(async () =>
             {
                 var baseByIdQuery = new BaseByIdQuery {Id = id};
                 var result = await QueryDispatcher.Dispatch<BaseByIdQuery, PatientProfileQueryResult>(baseByIdQuery);
-                return Ok(result.PatientProfile);
+                return Ok(result.Patient);
             }, memberParameters: new object[] { loggedInPerson, id });
         }
 

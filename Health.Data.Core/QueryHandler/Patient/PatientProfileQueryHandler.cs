@@ -2,6 +2,7 @@
 using Health.Data.Core.Query;
 using Health.Data.Core.QueryResult.Patient;
 using Health.Data.QueryService.Repository;
+using Health.Models.Output;
 using Health.Setup.Core;
 
 namespace Health.Data.Core.QueryHandler.Patient
@@ -20,7 +21,7 @@ namespace Health.Data.Core.QueryHandler.Patient
             var data = await _patientRepository.GetPatientProfileTask(query.Id);
             var result = new PatientProfileQueryResult
             {
-                PatientProfile = data
+                Patient = data
             };
             return result;
         }

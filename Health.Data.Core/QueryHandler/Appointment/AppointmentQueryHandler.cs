@@ -1,26 +1,26 @@
 ﻿using System.Threading.Tasks;
 using Health.Data.Core.Query;
-using Health.Data.Core.QueryResult.Patient;
+using Health.Data.Core.QueryResult.Appointment;
 using Health.Data.QueryService.Repository;
 using Health.Setup.Core;
 
 namespace Health.Data.Core.QueryHandler.Appointment
 {
-    public class AppointmentQueryHandler : IQueryHandler<BaseByIdQuery, PatientProfileQueryResult>
+    public class AppointmentQueryHandler : IQueryHandler<BaseByIdQuery, AppointmentQueryResult>
     {
-        private readonly IPatientRepository _patientRepository;
+        private readonly IAppointmentRepository _appointmentRepository;
 
-        public AppointmentQueryHandler(IPatientRepository patientRepository)
+        public AppointmentQueryHandler(IAppointmentRepository appointmentRepository)
         {
-            _patientRepository = patientRepository;
+            _appointmentRepository = appointmentRepository;
         }
 
-        public async Task<PatientProfileQueryResult> Retrieve(BaseByIdQuery query)
+        public async Task<AppointmentQueryResult> Retrieve(BaseByIdQuery query)
         {
-            var data = await _patientRepository.GetPatientProfileTask(query.Id);
-            var result = new PatientProfileQueryResult
+            var data = await _appointmentRepository.GetPatientAppointmentTask(query.Id);
+            var result = new AppointmentQueryResult
             {
-                PatientProfile = data
+                Appointment = data
             };
             return result;
         }

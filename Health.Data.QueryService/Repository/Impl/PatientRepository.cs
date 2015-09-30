@@ -15,10 +15,10 @@ namespace Health.Data.QueryService.Repository.Impl
             return Mapper.Map<IEnumerable<Patient>>(allPatients);
         }
 
-        public async Task<PatientProfile> GetPatientProfileTask(int id)
+        public async Task<Patient> GetPatientProfileTask(int id)
         {
             var patient = await Db.Patients.FindAsync(id);
-            return Mapper.Map<PatientProfile>(patient);
+            return Mapper.Map<Patient>(patient);
         }
     }
 }

@@ -1,9 +1,7 @@
-﻿using Health.Models.Output;
-
-namespace Health.Data.Core.QueryResult.Patient
+﻿namespace Health.Data.Core.QueryResult.Patient
 {
     public class PatientProfileQueryResult : BaseQueryResult
     {
-        public PatientProfile PatientProfile { get; set; }
+        public Health.Models.Output.Patient Patient { get; set; }
     }
 }
