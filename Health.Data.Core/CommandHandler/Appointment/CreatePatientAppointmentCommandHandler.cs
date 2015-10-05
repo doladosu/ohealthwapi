@@ -22,18 +22,18 @@ namespace Health.Data.Core.CommandHandler.Appointment
             var result = commandValidator.Validate(command);
             if (result.IsValid)
             {
-                await _appointmentCommandRepository.CreatePatientAppointment(command.UserId, command.Appointment);
+                await _appointmentCommandRepository.CreatePatientAppointment(command.Appointment);
                 commandResult.Success = true;
                 if (!commandResult.Success)
                 {
-                    commandResult.Message = "Error occured resolving mpi matches!";
+                    commandResult.Message = "Error occured creating appointment!";
                 }
             }
             else
             {
                 commandResult.Success = false;
                 var error = result.Errors.FirstOrDefault();
-                commandResult.Message = error != null ? error.ErrorMessage : "Invalid input to MPI match resolution!";
+                commandResult.Message = error != null ? error.ErrorMessage : "Error occured creating appointment!";
             }
             return commandResult;
         }

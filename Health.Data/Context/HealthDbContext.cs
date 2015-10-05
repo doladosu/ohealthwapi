@@ -23,6 +23,7 @@ namespace Health.Data.Context
         public virtual DbSet<Race> Races { get; set; }
         public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
         public virtual DbSet<State> States { get; set; }
+        public virtual DbSet<Appointment> Appointments { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

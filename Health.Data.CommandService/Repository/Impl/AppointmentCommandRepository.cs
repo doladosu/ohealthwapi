@@ -1,24 +1,26 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using AutoMapper;
 using Health.Models.Output;
 
 namespace Health.Data.CommandService.Repository.Impl
 {
     public class AppointmentCommandRepository : BaseCommandRepository, IAppointmentCommandRepository
     {
-        public Task CreatePatientAppointment(string userId, Appointment appointment)
+        public async Task CreatePatientAppointment(Appointment appointment)
         {
-            throw new NotImplementedException();
+            var data = Mapper.Map<Models.Appointment>(appointment);
+            Db.Appointments.Add(data);
+            await Db.SaveChangesAsync();
         }
 
-        public Task UpdatePatientAppointment(int id, Appointment appointment)
+        public async Task UpdatePatientAppointment(Appointment appointment)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task DeletePatientAppointment(int id)
-        {
-            throw new NotImplementedException();
+            var data = Db.Appointments.Find(appointment.AppointmentId);
+            if (data != null)
+            {
+                data.IsCancelled = appointment.IsCancelled;
+            }
+            await Db.SaveChangesAsync();
         }
     }
 }

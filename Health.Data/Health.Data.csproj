@@ -94,6 +94,7 @@
     <Compile Include="Auth\AuthRepository.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\ApplicationType.cs" />
+    <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\AspNetRole.cs" />
     <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="Models\AspNetUserClaim.cs" />

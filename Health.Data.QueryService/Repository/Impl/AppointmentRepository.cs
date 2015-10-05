@@ -9,29 +9,21 @@ namespace Health.Data.QueryService.Repository.Impl
 {
     public class AppointmentRepository : BaseQueryRepository, IAppointmentRepository
     {
-        public Task<IEnumerable<Appointment>> GetAllPatientAppointmentsTask(string userId)
+        public async Task<IEnumerable<Appointment>> GetAllPatientAppointmentsTask(string userId, int patientId)
         {
-            throw new System.NotImplementedException();
+            if (patientId == 0)
+            {
+                var allData = await Db.Appointments.ToListAsync();
+                return Mapper.Map<IEnumerable<Appointment>>(allData);
+            }
+            var data = await Db.Appointments.Where(e => e.PatientId == patientId && e.UserId == userId).ToListAsync();
+            return Mapper.Map<IEnumerable<Appointment>>(data);
         }
 
-        public Task<Appointment> GetPatientAppointmentTask(int id)
+        public async Task<Appointment> GetPatientAppointmentTask(int appointmentId)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<Appointment> CreateAppointmentTask(Appointment appointment)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task UpdateAppointment(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task CancelAppointmentTask(int id)
-        {
-            throw new System.NotImplementedException();
+            var data = await Db.Appointments.Where(e => e.AppointmentId == appointmentId).ToListAsync();
+            return Mapper.Map<Appointment>(data);
         }
     }
 }

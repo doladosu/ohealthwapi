@@ -1,7 +1,7 @@
 ﻿<div class="customers view indent">
     <div class="container">
         <header>
-            <h3><span class="glyphicon glyphicon-user"></span> Patients</h3>
+            <h3><span class="glyphicon glyphicon-user"></span> Appointments</h3>
         </header>
         <div class="row">
             <div class="col-md-10">
@@ -18,8 +18,8 @@
                             </a>
                         </li>
                         <li class="toolbaritem">
-                            <a data-ng-click="vm.navigate('/patientedit/0')">
-                                <span class="glyphicon glyphicon-plus"></span> Add Patient
+                            <a data-ng-click="vm.navigate('/appointmentedit/0')">
+                                <span class="glyphicon glyphicon-plus"></span> Add Appointment
                             </a>
                         </li>
                     </ul>
@@ -40,21 +40,21 @@
         <div class="container">
             <div class="row cardContainer show-hide-animation" data-ng-hide="vm.listDisplayModeEnabled">
                 <div class="col-sm-6 col-md-4 col-lg-3" data-ng-class="vm.cardAnimationClass"
-                     data-ng-repeat="patient in vm.filteredPatients | orderBy:'lastName'">
+                     data-ng-repeat="appointment in vm.filteredAppointments | orderBy:'appointmentDate'">
                     <div class="card">
-                        <button class="btn close cardClose" title="Delete Patient" data-ng-click="vm.deletePatient(patient.id)">&times;</button>
-                        <div class="cardHeader"><a href="#/patientedit/{{patient.id}}" class="white">{{patient.firstName + ' ' + patient.lastName}} <i class="icon-edit icon-white editIcon"></i></a></div>
+                        <button class="btn close cardClose" title="Cancel Appointment" data-ng-click="vm.deleteAppointment(appointment.id)">&times;</button>
+                        <div class="cardHeader"><a href="#/appointmentedit/{{appointment.id}}" class="white">{{appointment.firstName + ' ' + appointment.lastName}} <i class="icon-edit icon-white editIcon"></i></a></div>
                         <div class="cardBody">
                             <div class="clearfix">
                                 <div class="pull-left cardBodyLeft">
-                                    <a href="#/patientedit/{{patient.id}}" class="white"><img data-ng-src="/Content/images/{{patient.gender | lowercase}}.png" class="cardImage" /></a>
+                                    <a href="#/appointmentedit/{{appointment.id}}" class="white"><img data-ng-src="/Content/images/{{appointment.gender | lowercase}}.png" class="cardImage" /></a>
                                 </div>
                                 <div class="pull-left cardBodyRight">
-                                    <div class="cardBodyContent">{{patient.city}}, {{patient.state.name}}</div>
+                                    <div class="cardBodyContent">{{appointment.city}}, {{appointment.state.name}}</div>
                                     <div>
-                                        <a href="#/patientorders/{{patient.id}}" class="btn-link">
-                                            {{ patient.orderCount }}
-                                            <span data-ng-pluralize count="patient.orderCount"
+                                        <a href="#/appointmentorders/{{appointment.id}}" class="btn-link">
+                                            {{ appointment.orderCount }}
+                                            <span data-ng-pluralize count="appointment.orderCount"
                                                   when="{'1': 'Order','other': 'Orders'}">
                                             </span>
                                         </a>
@@ -79,19 +79,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr data-ng-repeat="patient in vm.filteredPatients | orderBy:vm.orderby:vm.reverse" class="repeat-animation">
-                                    <td><a href="#/patientedit/{{patient.id}}"><img data-ng-src="/Content/images/{{patient.gender | lowercase}}.png" class="cardImage" alt="Patient Image" /></a></td>
-                                    <td><a href="#/patientedit/{{patient.id}}">{{patient.firstName + ' ' + patient.lastName}}</a></td>
-                                    <td>{{patient.city}}, {{patient.state.name}}</td>
+                                <tr data-ng-repeat="appointment in vm.filteredAppointments | orderBy:vm.orderby:vm.reverse" class="repeat-animation">
+                                    <td><a href="#/appointmentedit/{{appointment.id}}"><img data-ng-src="/Content/images/{{appointment.gender | lowercase}}.png" class="cardImage" alt="Customer Image" /></a></td>
+                                    <td><a href="#/appointmentedit/{{appointment.id}}">{{appointment.firstName + ' ' + appointment.lastName}}</a></td>
+                                    <td>{{appointment.city}}, {{appointment.state.name}}</td>
                                     <td>
-                                        <a href="#/patientorders/{{patient.id}}" class="btn-link">
-                                            {{ patient.orderCount }}
-                                            <span data-ng-pluralize count="patient.orderCount"
+                                        <a href="#/appointmentorders/{{appointment.id}}" class="btn-link">
+                                            {{ appointment.orderCount }}
+                                            <span data-ng-pluralize count="appointment.orderCount"
                                                   when="{'1': 'Order','other': 'Orders'}">
                                             </span>
                                         </a>
                                     </td>
-                                    <td><button class="btn btn-danger" data-ng-click="vm.deletePatient(patient.id)">Delete</button></td>
+                                    <td><button class="btn btn-danger" data-ng-click="vm.deleteAppointment(appointment.id)">Cancel</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -100,13 +100,13 @@
             </div>
         </div>
         <div class="container">
-            <div class="row show-hide-animation" data-ng-show="vm.filteredPatients.length == 0 || vm.filteredPatients === null">
+            <div class="row show-hide-animation" data-ng-show="vm.filteredAppointments.length == 0 || vm.filteredAppointments === null">
                 <div class="col-span-12">
-                    <h4>No Patients found</h4>
+                    <h4>No appointments found</h4>
                 </div>
             </div>
         </div>
-        <div class="row show-hide-animation" data-ng-show="vm.patients.length > 0">
+        <div class="row show-hide-animation" data-ng-show="vm.appointments.length > 0">
             <div class="col-md-12">
                 <div data-pagination
                      data-on-select-page="vm.pageChanged(page)"
@@ -115,7 +115,7 @@
                      data-items-per-page="vm.pageSize"
                      data-boundary-links="true"
                      class="pagination-sm"></div>
-                <h5>Showing {{ vm.filteredCount }} of {{ vm.totalRecords}} total patients</h5>
+                <h5>Showing {{ vm.filteredCount }} of {{ vm.totalRecords}} total appointments</h5>
             </div>
         </div>
         <br /><br /><br />

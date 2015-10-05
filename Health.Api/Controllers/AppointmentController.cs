@@ -3,11 +3,9 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Http.OData;
-using Health.Data.Core.Command;
-using Health.Data.Core.Command.Patient;
+using Health.Data.Core.Command.Appointment;
 using Health.Data.Core.Query;
 using Health.Data.Core.QueryResult.Appointment;
-using Health.Data.Core.QueryResult.Patient;
 using Health.Models.Output;
 using Health.Setup;
 using Health.Setup.Core;
@@ -45,7 +43,25 @@ namespace Health.Controllers
         {
             return await TryAsync(async () =>
             {
-                var baseByIdQuery = new BaseByIdQuery{Id = patientId};
+                var baseByIdQuery = new BaseByIdQuery{Id = patientId, UserId = loggedInPerson.Id};
+                var result = await QueryDispatcher.Dispatch<BaseByIdQuery, AppointmentsQueryResult>(baseByIdQuery);
+                return new CustomOkResult<IEnumerable<Appointment>>(result.Appointments, this)
+                {
+                    XInlineCount = result.TotalRecords.ToString()
+                };
+            }, memberParameters: new object[] { loggedInPerson, patientId });
+        }
+
+        /// <returns></returns>
+        [HttpGet]
+        [Route("admin")]
+        [EnableQuery]
+        [ResponseType(typeof(IEnumerable<Appointment>))]
+        public async Task<IHttpActionResult> GetAllPatientAppointmentsTaskAdmin(ILoggedInPerson loggedInPerson)
+        {
+            return await TryAsync(async () =>
+            {
+                var baseByIdQuery = new BaseByIdQuery { UserId = loggedInPerson.Id, Id = 0};
                 var result = await QueryDispatcher.Dispatch<BaseByIdQuery, AppointmentsQueryResult>(baseByIdQuery);
                 return new CustomOkResult<IEnumerable<Appointment>>(result.Appointments, this)
                 {
@@ -58,19 +74,19 @@ namespace Health.Controllers
         /// 
         /// </summary>
         /// <param name="loggedInPerson"></param>
-        /// <param name="id"></param>
+        /// <param name="appointmentId"></param>
         /// <returns></returns>
         [HttpGet]
         [Route("{id:int}")]
         [ResponseType(typeof(Appointment))]
-        public async Task<IHttpActionResult> GetPatientAppointmentTask(ILoggedInPerson loggedInPerson, int id)
+        public async Task<IHttpActionResult> GetPatientAppointmentTask(ILoggedInPerson loggedInPerson, int appointmentId)
         {
             return await TryAsync(async () =>
             {
-                var baseByIdQuery = new BaseByIdQuery { Id = id };
+                var baseByIdQuery = new BaseByIdQuery { Id = appointmentId };
                 var result = await QueryDispatcher.Dispatch<BaseByIdQuery, AppointmentQueryResult>(baseByIdQuery);
                 return Ok(result.Appointment);
-            }, memberParameters: new object[] { loggedInPerson, id });
+            }, memberParameters: new object[] { loggedInPerson, appointmentId });
         }
 
         /// <summary>
@@ -82,33 +98,33 @@ namespace Health.Controllers
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(CommandResult))]
-        public async Task<IHttpActionResult> CreatePatientAppointmentTask(ILoggedInPerson loggedInPerson, Appointment appointment)
+        public async Task<IHttpActionResult> CreatePatientAppointmentTask(ILoggedInPerson loggedInPerson, [FromBody]Appointment appointment)
         {
             return await TryAsync(async () =>
             {
-                var command = new CreatePatientProfileCommand { PatientProfile = null, UserId = loggedInPerson.Id };
+                var command = new CreatePatientAppointmentCommand { Appointment = appointment, UserId = loggedInPerson.Id };
                 var result = await CommandDispatcher.Dispatch(command);
                 return Ok(result);
-            }, memberParameters: new object[] { loggedInPerson });
+            }, memberParameters: new object[] { loggedInPerson, appointment });
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="loggedInPerson"></param>
-        /// <param name="id"></param>
+        /// <param name="appointment"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("{id:int}")]
+        [Route("")]
         [ResponseType(typeof(Appointment))]
-        public async Task<IHttpActionResult> UpdatePatientAppointmentTask(ILoggedInPerson loggedInPerson, int id)
+        public async Task<IHttpActionResult> UpdatePatientAppointmentTask(ILoggedInPerson loggedInPerson, [FromBody]Appointment appointment)
         {
             return await TryAsync(async () =>
             {
-                var baseByIdQuery = new BaseByIdQuery { Id = id };
-                var result = await QueryDispatcher.Dispatch<BaseByIdQuery, AppointmentQueryResult>(baseByIdQuery);
-                return Ok(result.Appointment);
-            }, memberParameters: new object[] { loggedInPerson, id });
+                var command = new UpdatePatientAppointmentCommand { Appointment = appointment };
+                var result = await CommandDispatcher.Dispatch(command);
+                return Ok(result);
+            }, memberParameters: new object[] { loggedInPerson, appointment });
         }
     }
 }

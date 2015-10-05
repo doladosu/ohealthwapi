@@ -81,4 +81,15 @@ namespace Health.Models
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class ForgotPasswordBindingModel
+    {
+        [Required]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+    }
+
 }

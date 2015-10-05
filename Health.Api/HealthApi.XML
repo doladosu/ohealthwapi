@@ -604,6 +604,13 @@
             <param name="model"></param>
             <returns></returns>
         </member>
+        <member name="M:Health.Controllers.AccountController.ForgotPassword(Health.Models.ForgotPasswordBindingModel)">
+            <summary>
+            Forgot password
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="P:Health.Controllers.AccountController.UserManager">
             <summary>
             
@@ -667,12 +674,15 @@
             <param name="patientId"></param>
             <returns></returns>
         </member>
+        <member name="M:Health.Controllers.AppointmentController.GetAllPatientAppointmentsTaskAdmin(Health.Setup.ILoggedInPerson)">
+            <returns></returns>
+        </member>
         <member name="M:Health.Controllers.AppointmentController.GetPatientAppointmentTask(Health.Setup.ILoggedInPerson,System.Int32)">
             <summary>
             
             </summary>
             <param name="loggedInPerson"></param>
-            <param name="id"></param>
+            <param name="appointmentId"></param>
             <returns></returns>
         </member>
         <member name="M:Health.Controllers.AppointmentController.CreatePatientAppointmentTask(Health.Setup.ILoggedInPerson,Health.Models.Output.Appointment)">
@@ -683,12 +693,12 @@
             <param name="appointment"></param>
             <returns></returns>
         </member>
-        <member name="M:Health.Controllers.AppointmentController.UpdatePatientAppointmentTask(Health.Setup.ILoggedInPerson,System.Int32)">
+        <member name="M:Health.Controllers.AppointmentController.UpdatePatientAppointmentTask(Health.Setup.ILoggedInPerson,Health.Models.Output.Appointment)">
             <summary>
             
             </summary>
             <param name="loggedInPerson"></param>
-            <param name="id"></param>
+            <param name="appointment"></param>
             <returns></returns>
         </member>
         <member name="T:Health.Controllers.HomeController">
@@ -722,31 +732,46 @@
         </member>
         <member name="T:Health.Controllers.PatientController">
             <summary>
-            Patient endpoints
+            Patient action endpoints
             </summary>
         </member>
         <member name="M:Health.Controllers.PatientController.#ctor(Health.Setup.Core.ICommandDispatcher,Health.Setup.Core.IQueryDispatcher)">
             <summary>
-            
+            Patient controller declaration
             </summary>
             <param name="commandDispatcher"></param>
             <param name="queryDispatcher"></param>
         </member>
         <member name="M:Health.Controllers.PatientController.GetAllPatientProfilesTask(Health.Setup.ILoggedInPerson)">
             <summary>
-            Gets all PatientProfiles
+            Get all patients for a user
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Health.Controllers.PatientController.GetAllPatientProfilesTaskAdmin(Health.Setup.ILoggedInPerson)">
+            <summary>
+            Admin - Get all patient profiles
+            </summary>
+            <param name="loggedInPerson"></param>
             <returns></returns>
         </member>
         <member name="M:Health.Controllers.PatientController.GetPatientProfileTask(Health.Setup.ILoggedInPerson,System.Int32)">
             <summary>
-            Gets PatientProfile by Id
+            Gets Patient Profile by patient id
             </summary>
             <returns></returns>
         </member>
         <member name="M:Health.Controllers.PatientController.CreatePatientProfileTask(Health.Setup.ILoggedInPerson,Health.Models.Output.PatientProfile)">
             <summary>
             Create new patient profile
+            </summary>
+            <param name="loggedInPerson"></param>
+            <param name="patientProfile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Health.Controllers.PatientController.UpdatePatientProfileTask(Health.Setup.ILoggedInPerson,Health.Models.Output.PatientProfile)">
+            <summary>
+            Update patient profile
             </summary>
             <param name="loggedInPerson"></param>
             <param name="patientProfile"></param>
@@ -769,6 +794,11 @@
             </summary>
         </member>
         <member name="M:Health.WebApiApplication.Application_Start">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Health.Models.ForgotPasswordBindingModel">
             <summary>
             
             </summary>

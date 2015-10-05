@@ -19,6 +19,8 @@ namespace Health
                 .ForMember(dest => dest.Race, opt => opt.MapFrom(src => src.RaceId));
             Mapper.CreateMap<State, Models.Output.State>();
             Mapper.CreateMap<Models.Output.Patient, Patient>();
+            Mapper.CreateMap<Models.Output.Appointment, Appointment>();
+            Mapper.CreateMap<Appointment, Models.Output.Appointment>();
         }
     }
 }

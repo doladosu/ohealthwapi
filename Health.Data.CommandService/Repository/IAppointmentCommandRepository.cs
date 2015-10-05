@@ -6,8 +6,7 @@ namespace Health.Data.CommandService.Repository
 {
     public interface IAppointmentCommandRepository : IRepository
     {
-        Task CreatePatientAppointment(string userId, Appointment appointment);
-        Task UpdatePatientAppointment(int id, Appointment appointment);
-        Task DeletePatientAppointment(int id);
+        Task CreatePatientAppointment(Appointment appointment);
+        Task UpdatePatientAppointment(Appointment appointment);
     }
 }

@@ -2,7 +2,7 @@
 
     var injectParams = ['$http', '$q'];
 
-    var patientsFactory = function ($http, $q) {
+    var appointmentsFactory = function ($http, $q) {
         var serviceBase = '/api/',
             factory = {};
 
@@ -51,8 +51,8 @@
           });
         }
 
-        factory.getPatients = function (pageIndex, pageSize) {
-          return getPagedResource('Patients', pageIndex, pageSize);
+        factory.getAppointments = function (pageIndex, pageSize) {
+            return getPagedResource('Appointments', pageIndex, pageSize);
         };
 
         factory.checkUniqueValue = function (id, property, value) {
@@ -63,33 +63,33 @@
                 });
         };
 
-        factory.insertPatient = function (patient) {
-            return $http.post(serviceBase + 'patient', patient).then(function (results) {
-                patient.id = results.data.id;
+        factory.insertAppointment = function (appointment) {
+            return $http.post(serviceBase + 'appointment', appointment).then(function (results) {
+                appointment.id = results.data.id;
                 return results.data;
             });
         };
 
-        factory.newPatient = function () {
+        factory.newAppointment = function () {
             return $q.when({id: 0});
         };
 
-        factory.updatePatient = function (customer) {
-            return $http.put(serviceBase + 'putCustomer/' + customer.id, customer).then(function (status) {
+        factory.updateAppointment = function (customer) {
+            return $http.put(serviceBase + 'appointment/' + customer.id, customer).then(function (status) {
                 return status.data;
             });
         };
 
-        factory.deletePatient = function (id) {
-            return $http.delete(serviceBase + 'deleteCustomer/' + id).then(function (status) {
+        factory.deleteAppointment = function (id) {
+            return $http.put(serviceBase + 'appointment/' + id).then(function (status) {
                 return status.data;
             });
         };
 
-        factory.getPatient = function (id) {
+        factory.getAppointment = function (id) {
             //then does not unwrap data so must go through .data property
             //success unwraps data automatically (no need to call .data property)
-            return $http.get(serviceBase + 'customerById/' + id).then(function (results) {
+            return $http.get(serviceBase + 'appointment/' + id).then(function (results) {
                 //extendCustomers([results.data]);
                 return results.data;
             });
@@ -105,8 +105,8 @@
         return factory;
     };
 
-    patientsFactory.$inject = injectParams;
+    appointmentsFactory.$inject = injectParams;
 
-    angular.module('customersApp').factory('patientsService', patientsFactory);
+    angular.module('customersApp').factory('appointmentsService', appointmentsFactory);
 
 }());

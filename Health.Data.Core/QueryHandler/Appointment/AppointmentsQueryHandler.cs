@@ -17,7 +17,7 @@ namespace Health.Data.Core.QueryHandler.Appointment
 
         public async Task<AppointmentsQueryResult> Retrieve(BaseByIdQuery query)
         {
-            var allData = await _appointmentRepository.GetAllPatientAppointmentsTask(query.UserId);
+            var allData = await _appointmentRepository.GetAllPatientAppointmentsTask(query.UserId, query.Id);
             var result = new AppointmentsQueryResult
             {
                 Appointments = allData,

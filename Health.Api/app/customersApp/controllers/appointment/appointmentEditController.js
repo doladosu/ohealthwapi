@@ -1,31 +1,29 @@
-﻿(function() {
+﻿(function () {
 
-    var injectParams = [
-        '$scope', '$location', '$routeParams',
-        '$timeout', 'config', 'patientsService', 'modalService', 'listsService'
-    ];
+    var injectParams = ['$scope', '$location', '$routeParams',
+                        '$timeout', 'config', 'appointmentsService', 'modalService', 'listsService'];
 
-    var patientEditController = function($scope, $location, $routeParams,
-        $timeout, config, patientsService, modalService, listsService) {
+    var appointmentEditController = function ($scope, $location, $routeParams,
+                                           $timeout, config, appointmentsService, modalService, listsService) {
 
         var vm = this,
-            patientId = ($routeParams.patientId) ? parseInt($routeParams.patientId) : 0,
+            appointmentId = ($routeParams.appointmentId) ? parseInt($routeParams.appointmentId) : 0,
             timer,
             onRouteChangeOff;
 
-        vm.patient = {};
+        vm.appointment = {};
         vm.states = [];
-        vm.title = (patientId > 0) ? 'Edit' : 'Add';
-        vm.buttonText = (patientId > 0) ? 'Update' : 'Add';
+        vm.title = (appointmentId > 0) ? 'Edit' : 'Add';
+        vm.buttonText = (appointmentId > 0) ? 'Update' : 'Add';
         vm.updateStatus = false;
         vm.errorMessage = '';
 
-        vm.isStateSelected = function (patientStateId, stateId) {
-            return patientStateId === stateId;
+        vm.isStateSelected = function (customerStateId, stateId) {
+            return customerStateId === stateId;
         };
 
         function startTimer() {
-            timer = $timeout(function() {
+            timer = $timeout(function () {
                 $timeout.cancel(timer);
                 vm.errorMessage = '';
                 vm.updateStatus = false;
@@ -45,36 +43,37 @@
             startTimer();
         }
 
-        vm.savePatient = function () {
+        vm.saveAppointment = function () {
             if ($scope.editForm.$valid) {
-                if (!vm.patient.id) {
-                    patientsService.insertCustomer(vm.patient).then(processSuccess, processError);
-                } else {
-                    patientsService.updateCustomer(vm.patient).then(processSuccess, processError);
+                if (!vm.customer.id) {
+                    appointmentsService.insertCustomer(vm.appointment).then(processSuccess, processError);
+                }
+                else {
+                    appointmentsService.updateCustomer(vm.appointment).then(processSuccess, processError);
                 }
             }
         };
 
         function getStates() {
-            return listsService.getStates().then(function(states) {
-                vm.states = states;
-            }, processError);
+          return listsService.getStates().then(function (states) {
+            vm.states = states;
+          }, processError);
         }
 
-        vm.deletePatient = function () {
-            var custName = vm.patient.firstName + ' ' + vm.patient.lastName;
+        vm.deleteAppointment = function () {
+            var custName = vm.appointment.firstName + ' ' + vm.appointment.lastName;
             var modalOptions = {
                 closeButtonText: 'Cancel',
-                actionButtonText: 'Delete patient',
-                headerText: 'Delete ' + custName + '?',
-                bodyText: 'Are you sure you want to delete this patient?'
+                actionButtonText: 'Cancel Appointment',
+                headerText: 'Cancel ' + custName + '?',
+                bodyText: 'Are you sure you want to cancel this appointment?'
             };
 
-            modalService.showModal({}, modalOptions).then(function(result) {
+            modalService.showModal({}, modalOptions).then(function (result) {
                 if (result === 'ok') {
-                    patientsService.deletePatient(vm.customer.id).then(function () {
+                    appointmentsService.deleteAppointment(vm.appointment.id).then(function () {
                         onRouteChangeOff(); //Stop listening for location changes
-                        $location.path('/patients');
+                        $location.path('/customers');
                     }, processError);
                 }
             });
@@ -106,14 +105,14 @@
 
         function init() {
 
-            getStates().then(function() {
-                if (patientId > 0) {
-                    patientsService.getCustomer(patientId).then(function (patient) {
-                        vm.patient = patient;
+            getStates().then(function () {
+                if (appointmentId > 0) {
+                    appointmentsService.getAppointment(appointmentId).then(function (appointment) {
+                        vm.appointment = appointment;
                     }, processError);
                 } else {
-                    patientsService.newPatient().then(function (patient) {
-                        vm.patient = patient;
+                    appointmentsService.newAppointment().then(function (appointment) {
+                        vm.appointment = appointment;
                     });
                 }
             });
@@ -128,8 +127,7 @@
         init();
     };
 
-    patientEditController.$inject = injectParams;
+    appointmentEditController.$inject = injectParams;
 
-    angular.module('customersApp').controller('PatientEditController', patientEditController);
-
+    angular.module('customersApp').controller('AppointmentEditController', appointmentEditController);
 }());

@@ -316,6 +316,8 @@
     <Content Include="app\customersApp\animations\listAnimations.js" />
     <Content Include="app\customersApp\app.js" />
     <Content Include="app\customersApp\controllers\aboutController.js" />
+    <Content Include="app\customersApp\controllers\appointment\appointmentEditController.js" />
+    <Content Include="app\customersApp\controllers\appointment\appointmentsController.js" />
     <Content Include="app\customersApp\controllers\customers\customerEditController.js" />
     <Content Include="app\customersApp\controllers\customers\customerOrdersController.js" />
     <Content Include="app\customersApp\controllers\customers\customersController.js" />
@@ -334,12 +336,16 @@
     <Content Include="app\customersApp\services\authService.js" />
     <Content Include="app\customersApp\services\config.js" />
     <Content Include="app\customersApp\services\customersBreezeService.js" />
+    <Content Include="app\customersApp\services\listsService.js" />
+    <Content Include="app\customersApp\services\appointmentsService.js" />
     <Content Include="app\customersApp\services\patientsService.js" />
     <Content Include="app\customersApp\services\customersService.js" />
     <Content Include="app\customersApp\services\dataService.js" />
     <Content Include="app\customersApp\services\httpInterceptors.js" />
     <Content Include="app\customersApp\services\modalService.js" />
     <Content Include="app\customersApp\views\about.html" />
+    <Content Include="app\customersApp\views\appointment\appointmentEdit.html" />
+    <Content Include="app\customersApp\views\appointment\appointments.html" />
     <Content Include="app\customersApp\views\customers\customerEdit.html" />
     <Content Include="app\customersApp\views\customers\customerOrders.html" />
     <Content Include="app\customersApp\views\customers\customers.html" />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Health.Models.Output
+namespace Health.Data.Models
 {
     public class Appointment
     {

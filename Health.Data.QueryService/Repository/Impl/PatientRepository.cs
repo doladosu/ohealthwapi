@@ -11,8 +11,13 @@ namespace Health.Data.QueryService.Repository.Impl
     {
         public async Task<IEnumerable<Patient>> GetAllPatientsTask(string userId)
         {
-            var allPatients = await Db.Patients.Where(e => e.UserId == userId).ToListAsync();
-            return Mapper.Map<IEnumerable<Patient>>(allPatients);
+            if (string.IsNullOrEmpty(userId))
+            {
+                var allPatients = await Db.Patients.ToListAsync();
+                return Mapper.Map<IEnumerable<Patient>>(allPatients);
+            }
+            var patients = await Db.Patients.Where(e => e.UserId == userId).ToListAsync();
+            return Mapper.Map<IEnumerable<Patient>>(patients);
         }
 
         public async Task<Patient> GetPatientProfileTask(int id)
